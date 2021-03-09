@@ -1,0 +1,15 @@
+mutation createNetlifyStatistic(
+  $projectId: String!,
+  $gitCommitSha: String,
+  $branch: String,
+  $data: JSONObject!
+  ) {
+  createNetlifyStatistic(
+    projectId: $projectId
+    gitCommitSha: $gitCommitSha
+    branch: $branch
+    data: $data
+    ) {
+    id
+  }
+}
