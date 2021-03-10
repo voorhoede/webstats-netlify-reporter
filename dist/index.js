@@ -25063,7 +25063,7 @@ var webstatsSdk = graphql_1.getSdk(client);
 var BASE_URL = "https://analytics.services.netlify.com/v1";
 var rankedSelections = ['pages'];
 var headers = {
-    authorization: "Bearer " + netlifyAuthToken
+    authorization: "Bearer " + netlifyAuthToken,
 };
 var from = new Date();
 from.setDate(from.getDate() - 1);

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { info, setFailed } from '@actions/core'
+import { info, setFailed } from '@actions/core';
 import { initWebstatsGraphqlClient } from 'webstats-reporters-utils';
 import { getSdk } from '../generated/graphql';
 import fetch from 'node-fetch';
@@ -28,7 +28,7 @@ const BASE_URL = `https://analytics.services.netlify.com/v1`;
 const rankedSelections = ['pages'];
 
 const headers = {
-  authorization: `Bearer ${netlifyAuthToken}`
+  authorization: `Bearer ${netlifyAuthToken}`,
 };
 
 const from = new Date();
@@ -53,8 +53,8 @@ async function main(): Promise<void> {
 
     info('Posting Netlify data to Webstats');
     await createNetlifyStatistic(transformedData);
-  } catch(e) {
-    setFailed(e.message)
+  } catch (e) {
+    setFailed(e.message);
   }
 }
 
