@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { info, setFailed } from '@actions/core'
 import { initWebstatsGraphqlClient } from 'webstats-reporters-utils';
 import { getSdk } from '../generated/graphql';
 import fetch from 'node-fetch';
@@ -27,7 +28,7 @@ const BASE_URL = `https://analytics.services.netlify.com/v1`;
 const rankedSelections = ['pages'];
 
 const headers = {
-  authorization: netlifyAuthToken,
+  authorization: `Bearer ${netlifyAuthToken}`
 };
 
 const from = new Date();
@@ -43,9 +44,18 @@ const range = {
 };
 
 async function main(): Promise<void> {
-  const data = await getNetlifyData();
-  const transformedData = transformData(data);
-  await createNetlifyStatistic(transformedData);
+  try {
+    info('Fetching data from Netlify');
+    const data = await getNetlifyData();
+
+    info('Transforming Netlify data');
+    const transformedData = transformData(data);
+
+    info('Posting Netlify data to Webstats');
+    await createNetlifyStatistic(transformedData);
+  } catch(e) {
+    setFailed(e.message)
+  }
 }
 
 main();
@@ -65,17 +75,14 @@ function generateUrl(id, service, range, resolution, limit) {
 }
 
 async function getNetlifyData(): Promise<any> {
-  try {
-    const data = await fetch(
-      generateUrl(netlifyId, 'pages', range, 'day', 9999),
-      {
-        headers,
-      },
-    );
-    return data.json();
-  } catch (e) {
-    console.log('Error:', e);
-  }
+  const data = await fetch(
+    generateUrl(netlifyId, 'pages', range, 'day', 9999),
+    {
+      headers,
+    },
+  );
+
+  return data.json();
 }
 
 function transformData(data: { data: any[] }): any {
@@ -97,12 +104,8 @@ function transformData(data: { data: any[] }): any {
 async function createNetlifyStatistic(
   data: Record<string, unknown>,
 ): Promise<void> {
-  try {
-    await webstatsSdk.createNetlifyStatistic({
-      projectId: projectId as string,
-      data,
-    });
-  } catch (e) {
-    console.log('Error:', e);
-  }
+  await webstatsSdk.createNetlifyStatistic({
+    projectId: projectId as string,
+    data,
+  });
 }
