@@ -25114,7 +25114,7 @@ function generateUrl(id, service, range, resolution, limit) {
 }
 function getNetlifyData() {
     return __awaiter(this, void 0, void 0, function () {
-        var data;
+        var data, json;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, node_fetch_1.default(generateUrl(netlifyId, 'pages', range, 'day', 9999), {
@@ -25122,7 +25122,13 @@ function getNetlifyData() {
                     })];
                 case 1:
                     data = _a.sent();
-                    return [2 /*return*/, data.json()];
+                    return [4 /*yield*/, data.json()];
+                case 2:
+                    json = _a.sent();
+                    if (json.code === 401) {
+                        throw new Error("Unauthorized");
+                    }
+                    return [2 /*return*/, json];
             }
         });
     });

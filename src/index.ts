@@ -82,7 +82,13 @@ async function getNetlifyData(): Promise<any> {
     },
   );
 
-  return data.json();
+  const json = await data.json();
+
+  if (json.code === 401) {
+    throw new Error("Unauthorized")
+  }
+
+  return json
 }
 
 function transformData(data: { data: any[] }): any {
