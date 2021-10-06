@@ -25144,6 +25144,7 @@ function transformData(data) {
                 dimension: 'day',
                 startDateTime: range.from / 1000,
                 endDateTime: range.to / 1000,
+                createdAt: range.from / 1000,
             };
         }),
     };

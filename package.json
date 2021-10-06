@@ -5,8 +5,8 @@
   "scripts": {
     "codegen": "graphql-codegen --config codegen.prod.yml",
     "start": "graphql-codegen --config codegen.dev.yml --watch",
-    "lint": "eslint . --ext .ts",
-    "prettier-format": "prettier --config .prettierrc '**/*.ts' --write",
+    "lint": "npx eslint . --ext .ts",
+    "prettier-format": "npx prettier --config .prettierrc '**/*.ts' --write",
     "prettier-watch": "onchange '**/*.ts' -- prettier --write {{changed}}",
     "build": "ncc build src/index.ts -o dist",
     "save": "node dist/index.js"

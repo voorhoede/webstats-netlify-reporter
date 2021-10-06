@@ -91,7 +91,7 @@ async function getNetlifyData(): Promise<any> {
   return json
 }
 
-function transformData(data: { data: any[] }): any {
+function transformData(data: { data: any[] }): { version: string; pages: any[] } {
   return {
     version: '1',
     pages: data.data.map((page) => {
@@ -102,6 +102,7 @@ function transformData(data: { data: any[] }): any {
         dimension: 'day',
         startDateTime: range.from / 1000,
         endDateTime: range.to / 1000,
+        createdAt: range.from / 1000,
       };
     }),
   };
