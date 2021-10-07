@@ -15,7 +15,6 @@
     "@actions/core": "^1.2.6",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
-    "npm-run-all": "^4.1.5",
     "typescript": "^4.1.5",
     "webstats-reporters-utils": "git+https://github.com/voorhoede/webstats-reporters-utils.git"
   },
@@ -34,6 +33,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "graphql": "^15.5.0",
+    "husky": "^4.2.3",
     "prettier": "^2.2.1"
   }
 }
