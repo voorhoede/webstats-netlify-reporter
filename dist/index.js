@@ -25126,7 +25126,7 @@ function getNetlifyData() {
                 case 2:
                     json = _a.sent();
                     if (json.code === 401) {
-                        throw new Error("Unauthorized");
+                        throw new Error('Unauthorized');
                     }
                     return [2 /*return*/, json];
             }
