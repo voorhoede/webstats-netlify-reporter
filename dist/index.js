@@ -25080,21 +25080,23 @@ function main() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     core_1.info('Fetching data from Netlify');
                     return [4 /*yield*/, getNetlifyData()];
                 case 1:
                     data = _a.sent();
-                    console.log(data);
                     core_1.info('Transforming Netlify data');
                     transformedData = transformData(data);
                     core_1.info('Posting Netlify data to Webstats');
-                    return [3 /*break*/, 3];
+                    return [4 /*yield*/, createNetlifyStatistic(transformedData)];
                 case 2:
+                    _a.sent();
+                    return [3 /*break*/, 4];
+                case 3:
                     e_1 = _a.sent();
                     core_1.setFailed(e_1.message);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
