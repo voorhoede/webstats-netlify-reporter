@@ -114,7 +114,7 @@ async function createNetlifyStatistic(
   data: Record<string, unknown>,
 ): Promise<void> {
   await webstatsSdk.createNetlifyStatistic({
-    projectId: projectId as string,
+    projectId,
     data,
   });
 }
