@@ -24,7 +24,7 @@ if (!netlifyAuthToken) {
 
 const client = initWebstatsGraphqlClient();
 const webstatsSdk = getSdk(client);
-const BASE_URL = `https://analytics.services.netlify.com/v1`;
+const BASE_URL = `https://analytics.services.netlify.com/v2`;
 const rankedSelections = ['pages'];
 
 const headers = {
