@@ -24958,7 +24958,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     return cooked;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getSdk = exports.CreateNetlifyStatisticDocument = exports.QueryMode = exports.SortOrder = exports.StatisticTypes = void 0;
+exports.getSdk = exports.CreateNetlifyStatisticDocument = exports.QueryMode = exports.SortOrder = exports.StatisticScalarFieldEnum = exports.StatisticTypes = void 0;
 var graphql_1 = __nccwpck_require__(6155);
 var graphql_tag_1 = __nccwpck_require__(8377);
 var StatisticTypes;
@@ -24972,6 +24972,18 @@ var StatisticTypes;
     StatisticTypes["Sentry"] = "SENTRY";
     StatisticTypes["Cypress"] = "CYPRESS";
 })(StatisticTypes = exports.StatisticTypes || (exports.StatisticTypes = {}));
+var StatisticScalarFieldEnum;
+(function (StatisticScalarFieldEnum) {
+    StatisticScalarFieldEnum["Id"] = "id";
+    StatisticScalarFieldEnum["Type"] = "type";
+    StatisticScalarFieldEnum["Version"] = "version";
+    StatisticScalarFieldEnum["Data"] = "data";
+    StatisticScalarFieldEnum["GitCommitSha"] = "gitCommitSha";
+    StatisticScalarFieldEnum["Branch"] = "branch";
+    StatisticScalarFieldEnum["ProjectId"] = "projectId";
+    StatisticScalarFieldEnum["CreatedAt"] = "createdAt";
+    StatisticScalarFieldEnum["UpdatedAt"] = "updatedAt";
+})(StatisticScalarFieldEnum = exports.StatisticScalarFieldEnum || (exports.StatisticScalarFieldEnum = {}));
 var SortOrder;
 (function (SortOrder) {
     SortOrder["Asc"] = "asc";
@@ -25060,7 +25072,7 @@ if (!netlifyAuthToken) {
 }
 var client = webstats_reporters_utils_1.initWebstatsGraphqlClient();
 var webstatsSdk = graphql_1.getSdk(client);
-var BASE_URL = "https://analytics.services.netlify.com/v1";
+var BASE_URL = "https://analytics.services.netlify.com/v2";
 var rankedSelections = ['pages'];
 var headers = {
     authorization: "Bearer " + netlifyAuthToken,
